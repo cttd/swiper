@@ -3,7 +3,7 @@ import { parseSwiperBuildModulesEnv } from './utils/helper.js';
 const envBuildModules = parseSwiperBuildModulesEnv();
 
 export const modules = envBuildModules || [
-  // 'virtual',
+  'virtual',
   'keyboard',
   'mousewheel',
   // 'navigation',
