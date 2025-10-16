@@ -52,6 +52,7 @@ const debounce = (func, wait = 50) => {
 };
 
 const setCustomProperties = (swiper) => {
+  if (!swiper || !swiper.hostEl) return;
   swiper.hostEl.style.removeProperty('--swiper-slide-size');
   swiper.hostEl.style.removeProperty('--swiper-checked-height');
 
