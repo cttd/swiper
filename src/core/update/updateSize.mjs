@@ -5,12 +5,16 @@ export default function updateSize() {
   let width;
   let height;
   const el = swiper.el;
-  if (typeof swiper.params.width !== 'undefined' && swiper.params.width !== null) {
+  if (swiper.params && typeof swiper.params.width !== 'undefined' && swiper.params.width !== null) {
     width = swiper.params.width;
   } else {
     width = el.clientWidth;
   }
-  if (typeof swiper.params.height !== 'undefined' && swiper.params.height !== null) {
+  if (
+    swiper.params &&
+    typeof swiper.params.height !== 'undefined' &&
+    swiper.params.height !== null
+  ) {
     height = swiper.params.height;
   } else {
     height = el.clientHeight;
