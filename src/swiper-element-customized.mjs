@@ -60,7 +60,7 @@ const setCustomProperties = (swiper) => {
   const slideSize = swiper.slidesSizesGrid[0];
   let tallestHeight = 0;
 
-  if (typeof slideSize === 'number') {
+  if (typeof slideSize === 'number' && swiper.params.slidesPerView !== 'auto') {
     swiper.hostEl.style.setProperty('--swiper-slide-size', `${Math.floor(slideSize)}px`);
   }
 
