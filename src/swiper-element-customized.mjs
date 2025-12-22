@@ -235,6 +235,18 @@ class SwiperContainer extends ClassToExtend {
 
           debouncedSetCustomProperties(swiper);
         }
+
+        if (name === 'afterInit') {
+          document.addEventListener(
+            'mousemove',
+            () => {
+              const [swiper] = args;
+              swiper.params.touchStartForcePreventDefault = true;
+            },
+            { once: true },
+          );
+        }
+
         const eventName = swiperParams.eventsPrefix
           ? `${swiperParams.eventsPrefix}${name.toLowerCase()}`
           : name.toLowerCase();
