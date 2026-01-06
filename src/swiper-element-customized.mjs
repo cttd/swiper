@@ -230,21 +230,21 @@ class SwiperContainer extends ClassToExtend {
           this.calcSlideSlots();
         }
         // CUSTOM: set --swiper-slide-size property
-        if (name === 'afterInit' || name === 'resize' || name === 'update') {
-          const [swiper] = args;
+        const [swiper] = args;
 
+        if (name === 'afterInit' || name === 'resize' || name === 'update') {
           debouncedSetCustomProperties(swiper);
         }
 
         if (name === 'afterInit') {
-          document.addEventListener(
-            'mousemove',
-            () => {
-              const [swiper] = args;
-              swiper.params.touchStartForcePreventDefault = true;
-            },
-            { once: true },
-          );
+          // CUSTOM: workaround for more responsive mouse drag support
+          const mousemoveListener = () => {
+            if (!swiper.params) return;
+
+            document.removeEventListener('mousemove', mousemoveListener);
+            swiper.params.touchStartForcePreventDefault = true;
+          };
+          document.addEventListener('mousemove', mousemoveListener);
         }
 
         const eventName = swiperParams.eventsPrefix
