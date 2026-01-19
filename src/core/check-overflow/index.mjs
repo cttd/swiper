@@ -1,20 +1,17 @@
 function checkOverflow() {
   const swiper = this;
   const { isLocked: wasLocked, params } = swiper;
-  const { slidesOffsetBefore } = params;
 
-  if (slidesOffsetBefore) {
-    const lastSlideIndex = swiper.slides.length - 1;
-    const lastSlideRightEdge =
-      Math.abs(swiper.slidesGrid[0]) +
-      swiper.slidesSizesGrid[0] +
-      swiper.slidesGrid[lastSlideIndex] +
-      swiper.slidesSizesGrid[lastSlideIndex] +
-      slidesOffsetBefore * 2;
-    swiper.isLocked = swiper.size > lastSlideRightEdge;
-  } else {
-    swiper.isLocked = swiper.snapGrid.length === 1;
-  }
+  // minTranslate와 maxTranslate의 관계로 스크롤 가능 여부 판정
+  // snapGrid는 이미 centeredSlidesBounds, centerInsufficientSlides,
+  // slidesOffsetBefore, slidesOffsetAfter 등 모든 옵션을 반영함
+  const minTranslate = swiper.minTranslate();
+  const maxTranslate = swiper.maxTranslate();
+
+  // maxTranslate <= minTranslate이면 스크롤 불가능
+  // (일반적으로 maxTranslate는 minTranslate보다 작거나 같아야 함)
+  swiper.isLocked = maxTranslate <= minTranslate;
+
   if (params.allowSlideNext === true) {
     swiper.allowSlideNext = !swiper.isLocked;
   }

@@ -67,11 +67,94 @@
           padding-inline: 24px;
         }
       }
+      .v-button {
+        background-color: var(--v-button-background-color, transparent);
+        color: var(--v-button-text-color, currentColor);
+        border-width: var(--v-button-border-width, 0);
+        border-style: var(--v-button-border-style, solid);
+        border-color: var(--v-button-border-color, currentColor);
+        border-radius: var(--v-button-border-radius, 0);
+        display: var(--v-button-display, inline-flex);
+        align-items: center;
+        justify-content: center;
+        max-width: var(--v-button-max-width, 100%);
+        width: var(--v-button-width);
+        height: var(--v-button-height);
+        padding: var(--v-button-padding);
+        overflow: hidden;
+        cursor: pointer;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        text-align: center;
+        text-decoration: none;
+        font-weight: var(--v-button-font-weight, inherit);
+        font-size: var(--v-button-font-size, 1em);
+        line-height: var(--v-button-line-height, inherit);
+        letter-spacing: var(--v-button-leading, normal);
+      }
+
+      .tab-container {
+        --swiper-pagination-area-height: 0;
+        display: block;
+        width: 100%;
+        -webkit-user-select: none;
+        user-select: none;
+
+        swiper-slide {
+          width: auto !important;
+        }
+
+        .v-button {
+          --v-button-display: flex;
+          --v-button-height: 32px;
+          --v-button-padding: 0 12px 0 16px;
+          --v-button-border-width: 1px;
+          --v-tab-button-font-weight-selected: var(--v-font-regular);
+          --v-button-border-color: #ddd;
+          --v-button-font-size: 12px;
+          --v-button-line-height: 1.2;
+          --v-button-text-color: #000;
+          --v-button-background-color: #fff;
+        }
+
+        .v-button::after {
+          content: '';
+          display: inline-block;
+          width: 16px;
+          height: 16px;
+          background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M12 6L8 11L4 6" stroke="%23999999"/></svg>');
+          background-repeat: no-repeat;
+          background-size: contain;
+        }
+      }
     </style>
     <!-- <script src="swiper-element-bundle.js"></script> -->
   </head>
 
   <body>
+    <div class="tab-container">
+      <swiper-container
+        slides-offset-before="24"
+        slides-offset-after="24"
+        space-between="8"
+        slides-per-view="auto"
+        free-mode="true"
+        slide-to-clicked-slide="true"
+        centered-slides="true"
+        centered-slides-bounds="true"
+      >
+        <swiper-slide>
+          <button role="tab" type="button" class="v-button v-tab-button">가격/혜택</button>
+        </swiper-slide>
+        <swiper-slide>
+          <button role="tab" type="button" class="v-button v-tab-button">색상</button>
+        </swiper-slide>
+        <swiper-slide>
+          <button role="tab" type="button" class="v-button v-tab-button">사이즈</button>
+        </swiper-slide>
+      </swiper-container>
+    </div>
+
     <swiper-container navigation loop pagination-type="bullets" pagination-clickable>
       <swiper-slide>
         <div class="box">1</div>
