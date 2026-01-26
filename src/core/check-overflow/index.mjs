@@ -6,17 +6,25 @@ function checkOverflow() {
   const minTranslate = swiper.minTranslate();
   const maxTranslate = swiper.maxTranslate();
 
-  // centeredSlidesBounds가 true일 때는 maxTranslate()의 절대값과 slidesOffsetAfter를 비교
-  // |maxTranslate()| === offsetAfter이면 maxSnap = 0이므로 스크롤 불가능
-  // |maxTranslate()| > offsetAfter이면 maxSnap > 0이므로 스크롤 가능
-  if (params.centeredSlides && params.centeredSlidesBounds) {
-    let offsetAfter = params.slidesOffsetAfter;
-    if (typeof offsetAfter === 'function') {
-      offsetAfter = params.slidesOffsetAfter.call(swiper);
-    }
+  // TODO: 중앙정렬 여부와 무관하게 항상 모든 슬라이드가 컨테이너 안에 들어가는지를 확인하면 되는 거 아닌지?
+  // TODO: slidesOffsetBefore, slidesOffsetAfter는 체크하지 않아도 되는지?
 
-    const absMaxTranslate = Math.abs(maxTranslate);
-    swiper.isLocked = absMaxTranslate === (offsetAfter || 0);
+  // centeredSlidesBounds가 true일 때는 모든 슬라이드가 컨테이너 안에 들어가는지 확인
+  // updateSlides에서 maxSnap = allSlidesSize > swiperSize ? allSlidesSize - swiperSize : 0
+  // maxSnap === 0이면 모든 슬라이드가 들어가므로 스크롤 불필요
+  // 참고: 외부 스크립트가 params.centeredSlides를 수정할 수 있으므로 originalParams도 확인
+  const centeredSlides = params.centeredSlides || swiper.originalParams?.centeredSlides;
+  const centeredSlidesBounds =
+    params.centeredSlidesBounds || swiper.originalParams?.centeredSlidesBounds;
+  if (centeredSlides && centeredSlidesBounds) {
+    const spaceBetween = params.spaceBetween || 0;
+    let allSlidesSize = 0;
+    swiper.slidesSizesGrid.forEach((slideSizeValue) => {
+      allSlidesSize += slideSizeValue + spaceBetween;
+    });
+    allSlidesSize -= spaceBetween;
+    const maxSnap = allSlidesSize > swiper.size ? allSlidesSize - swiper.size : 0;
+    swiper.isLocked = maxSnap === 0;
   } else {
     // centeredSlidesBounds가 false일 때는 실제 스크롤 가능 거리 계산
     // maxTranslate는 일반적으로 minTranslate보다 작거나 같음 (음수 방향)

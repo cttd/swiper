@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <title>CHOCO.EL(초코엘) 키즈 | 신세계V</title>
+    <link rel="shortcut icon" href="//cdn-mo.shinsegaev.com/favicon_v.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="//cdn-mo.shinsegaev.com/favicon/v_icon_60.png" />
+    <link
+      rel="apple-touch-icon"
+      sizes="76x76"
+      href="//cdn-mo.shinsegaev.com/favicon/v_icon_76.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="120x120"
+      href="//cdn-mo.shinsegaev.com/favicon/v_icon_120.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="152x152"
+      href="//cdn-mo.shinsegaev.com/favicon/v_icon_152.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="//cdn-mo.shinsegaev.com/favicon/v_icon_180.png"
+    />
+    <link
+      rel="apple-touch-icon-precomposed"
+      href="//cdn-mo.shinsegaev.com/favicon/v_icon_192.png"
+    />
+    <link
+      rel="apple-touch-icon-precomposed"
+      href="//cdn-mo.shinsegaev.com/favicon/v_icon_160.png"
+    />
+    <link
+      rel="shortcut icon"
+      sizes="192x192"
+      type="image/png"
+      href="//cdn-mo.shinsegaev.com/favicon/v_icon_192.png"
+    />
+    <link
+      rel="shortcut icon"
+      sizes="160x160"
+      type="image/png"
+      href="//cdn-mo.shinsegaev.com/favicon/v_icon_160.png"
+    />
+
+    <link
+      rel="stylesheet"
+      href="//cdn-mo.shinsegaev.com/ui/font/pretendard/pretendard-subset.css?cVer=202601260528"
+    />
+    <link
+      rel="stylesheet"
+      href="//cdn-mo.shinsegaev.com/ui/font/gloock/gloock-subset.css?cVer=202601260528"
+    />
+    <link
+      rel="stylesheet"
+      href="//cdn-mo.shinsegaev.com/ui/mw/legacy/v2/common.css?cVer=202601260528"
+    />
+    <link
+      rel="stylesheet"
+      href="//cdn-mo.shinsegaev.com/ui/mw/common/common.css?cVer=202601260528"
+    />
+
+    <link
+      rel="stylesheet"
+      href="//cdn-mo.shinsegaev.com/ui/lib/videojs/video-js.min.css?cVer=202601260528?cVer=202601260528"
+      type="text/css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="//cdn-mo.shinsegaev.com/ui/mw/page/category.css?cVer=202601260528?cVer=202601260528"
+      type="text/css"
+    />
+
+    <meta charset="utf-8" />
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0,minimum-scale=1.0"
+    />
+    <meta name="format-detection" content="telephone=no, address=no, email=no" />
+
+    <!-- ios 레이어 팝업 백 스크롤 방지 test, [3.0] 경로변경-->
+    <script
+      type="text/javascript"
+      src="//cdn-mo.shinsegaev.com/ui/lib/body-scroll-lock/bodyScrollLock.min.js?cVer=202601260528"
+    ></script>
+
+    <script type="module">
+      import { register } from 'swiper/element/bundle';
+      register();
+    </script>
+    <script
+      type="module"
+      src="//cdn-mo.shinsegaev.com/ui/element/tab-container.js?cVer=202601260528"
+    ></script>
+    <script
+      type="module"
+      src="//cdn-mo.shinsegaev.com/ui/element/has-dropdown.js?cVer=202601260528"
+    ></script>
+    <script
+      type="module"
+      src="//cdn-mo.shinsegaev.com/ui/mw/common/common.js?cVer=202601260528"
+    ></script>
+
+    <script
+      type="text/javascript"
+      src="//cdn-mo.shinsegaev.com/ui/mw/legacy/v2/ui_common.js?cVer=202601260528"
+    ></script>
+  </head>
+  <body>
+    <main>
+      <div class="v-category v-viewtype-rotation v-scroll-autohide">
+        <div class="v-page-body">
+          <div id="vFilter" class="v-filter">
+            <div class="v-filter-bar">
+              <div class="v-filter-bar__inner">
+                <!-- 상품 탭 필터 -->
+
+                <div
+                  id="filterTabpanel_product"
+                  class="v-tab-panel is-active"
+                  data-select-tab="product"
+                >
+                  <tab-container
+                    class="v-tab v-filter-list"
+                    id="vFilterMainTab_product"
+                    active-index="0"
+                    role="tablist"
+                  >
+                    <swiper-container
+                      slides-offset-before="24"
+                      slides-offset-after="24"
+                      space-between="8"
+                      slides-per-view="auto"
+                      free-mode="true"
+                      slide-to-clicked-slide="true"
+                      centered-slides="true"
+                      centered-slides-bounds="true"
+                    >
+                      <swiper-slide>
+                        <button
+                          role="tab"
+                          aria-controls="tabpanel_price"
+                          id="filterListTab_price"
+                          data-filterfor="product"
+                          data-command="setupFilterSheet"
+                          data-commandfor="vFilterSheet"
+                          aria-applied="false"
+                          type="button"
+                          class="v-button v-tab-button"
+                          data-module-click-zone="searchresult§fliter§btn§가격/혜택"
+                        >
+                          가격/혜택
+                        </button>
+                      </swiper-slide>
+
+                      <swiper-slide>
+                        <button
+                          role="tab"
+                          aria-controls="tabpanel_color"
+                          id="filterListTab_color"
+                          data-filterfor="product"
+                          data-command="setupFilterSheet"
+                          data-commandfor="vFilterSheet"
+                          aria-applied="false"
+                          type="button"
+                          class="v-button v-tab-button"
+                          data-module-click-zone="searchresult§fliter§btn§색상"
+                        >
+                          색상
+                        </button>
+                      </swiper-slide>
+
+                      <swiper-slide>
+                        <button
+                          role="tab"
+                          aria-controls="tabpanel_size"
+                          id="filterListTab_size"
+                          data-filterfor="product"
+                          data-command="setupFilterSheet"
+                          data-commandfor="vFilterSheet"
+                          aria-applied="false"
+                          type="button"
+                          class="v-button v-tab-button"
+                          data-module-click-zone="searchresult§fliter§btn§사이즈"
+                        >
+                          사이즈
+                        </button>
+                      </swiper-slide>
+                    </swiper-container>
+                  </tab-container>
+                  <!--s: 선택 필터링 노출 영역 -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
