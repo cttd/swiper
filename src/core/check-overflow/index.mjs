@@ -1,26 +1,19 @@
 function checkOverflow() {
   const swiper = this;
   const { isLocked: wasLocked, params } = swiper;
-
-  // 전체 콘텐츠 크기를 계산하여 컨테이너에 들어가는지 확인
-  const spaceBetween = params.spaceBetween || 0;
-  let offsetBefore = params.slidesOffsetBefore || 0;
-  let offsetAfter = params.slidesOffsetAfter || 0;
-  if (typeof offsetBefore === 'function') {
-    offsetBefore = offsetBefore.call(swiper);
+  const { slidesOffsetBefore } = params;
+  if (slidesOffsetBefore) {
+    const lastSlideIndex = swiper.slides.length - 1;
+    const lastSlideRightEdge =
+      Math.abs(swiper.slidesGrid[0]) +
+      swiper.slidesSizesGrid[0] +
+      swiper.slidesGrid[lastSlideIndex] +
+      swiper.slidesSizesGrid[lastSlideIndex] +
+      slidesOffsetBefore * 2;
+    swiper.isLocked = swiper.size > lastSlideRightEdge;
+  } else {
+    swiper.isLocked = swiper.snapGrid.length === 1;
   }
-  if (typeof offsetAfter === 'function') {
-    offsetAfter = offsetAfter.call(swiper);
-  }
-
-  let allSlidesSize = 0;
-  swiper.slidesSizesGrid.forEach((slideSizeValue) => {
-    allSlidesSize += slideSizeValue + spaceBetween;
-  });
-  allSlidesSize -= spaceBetween;
-
-  const totalContentSize = offsetBefore + allSlidesSize + offsetAfter;
-  swiper.isLocked = totalContentSize <= swiper.size;
 
   if (params.allowSlideNext === true) {
     swiper.allowSlideNext = !swiper.isLocked;
