@@ -6,7 +6,7 @@ on:
 
 jobs:
   close-issues:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: missing demo
         uses: actions-cool/issues-helper@v2.2.1
